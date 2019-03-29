@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CouponsDisplay from './CouponsDisplay';
-import Button from './Button';
+import Button from '../../../common/Button';
 
 export default class Coupons extends Component {
   render() {

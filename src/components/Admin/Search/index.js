@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from './Input';
+import Input from '../../common/Input';
 import SearchResult from './SearchResult';
 const fakeData = [
   { id: '1', phoneNumber: '010-7676-6479' },
