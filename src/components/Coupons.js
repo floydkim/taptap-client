@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CouponsDisplay from './CouponsDisplay';
+import Button from './Button';
 
 export default class Coupons extends Component {
   render() {
@@ -7,8 +8,8 @@ export default class Coupons extends Component {
     return (
       <div>
         <CouponsDisplay counts={counts} />
-        <button>사용하기</button>
-        <button>적립하기</button>
+        <Button value={'사용하기'} />
+        <Button value={'적립하기'} />
       </div>
     );
   }

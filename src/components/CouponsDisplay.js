@@ -6,12 +6,18 @@ export default class CouponsDisplay extends Component {
     const couponsArray = [];
     for (let i = 0; i < count; i++) {
       couponsArray.push(
-        <img src="https://img.icons8.com/ios/100/000000/warranty-filled.png" />
+        <img
+          key={`checked ${i}`}
+          src="https://img.icons8.com/ios/100/000000/warranty-filled.png"
+        />
       );
     }
     for (let i = 0; i < REQUIRED - count; i++) {
       couponsArray.push(
-        <img src="https://img.icons8.com/ios/100/000000/warranty.png" />
+        <img
+          key={`unchecked ${i}`}
+          src="https://img.icons8.com/ios/100/000000/warranty.png"
+        />
       );
     }
     return (
