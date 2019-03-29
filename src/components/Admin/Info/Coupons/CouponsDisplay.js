@@ -9,6 +9,7 @@ export default class CouponsDisplay extends Component {
         <img
           key={`checked ${i}`}
           src="https://img.icons8.com/ios/100/000000/warranty-filled.png"
+          alt={`checked ${i}`}
         />
       );
     }
@@ -17,14 +18,10 @@ export default class CouponsDisplay extends Component {
         <img
           key={`unchecked ${i}`}
           src="https://img.icons8.com/ios/100/000000/warranty.png"
+          alt={`unchecked ${i}`}
         />
       );
     }
-    return (
-      <div>
-        {console.log(count, REQUIRED)}
-        {couponsArray}
-      </div>
-    );
+    return <div>{couponsArray}</div>;
   }
 }
