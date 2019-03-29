@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SearchInput from './SearchInput';
+import Input from './Input';
 import SearchResult from './SearchResult';
 const fakeData = [
   { id: '1', phoneNumber: '010-7676-6479' },
@@ -22,7 +22,7 @@ export default class Search extends Component {
     const { data } = this.state;
     return (
       <div className="col-3">
-        <SearchInput onChange={handleOnChange} />
+        <Input onChange={handleOnChange} placeholder={'휴대폰 번호로 검색'} />
         <SearchResult data={data} />
       </div>
     );
