@@ -1,7 +1,10 @@
-//Login.js
+const React = require('react');
 
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+const { Component } = React;
+
+const ReactRouterDom = require('react-router-dom');
+
+const { Redirect } = ReactRouterDom;
 
 export default class Login extends Component {
   constructor(props) {
@@ -12,21 +15,19 @@ export default class Login extends Component {
   }
 
   onClick = () => {
+    const { isLogin } = this.state;
     this.setState({
-      isLogin: !this.state.isLogin
+      isLogin: !isLogin
     });
-  }
+  };
 
   render() {
     const { isLogin } = this.state;
-    const { onClick } = this
+    const { onClick } = this;
     return (
       <div onClick={onClick}>
-        {
-          isLogin ? <Redirect to="/admin" /> : "LoginTest"
-        }
+        {isLogin ? <Redirect to="/admin" /> : 'LoginTest'}
       </div>
-    )
+    );
   }
 }
-
