@@ -1,0 +1,9 @@
+.searchItem {
+  border: 0px;
+  border-bottom: 1px solid gray;
+}
+
+.searchResult {
+  height: 500px;
+  overflow: scroll;
+}
