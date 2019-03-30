@@ -1,12 +1,16 @@
 import React from 'react';
 
 const SearchResult = ({ data }) => (
-  <div>
+  <div className="col-12 p-2 searchResult">
     {data.length === 0 ? (
       <div>데이터 없음</div>
     ) : (
       data.map((item, idx) => {
-        return <div key={idx}>{item.phoneNumber}</div>;
+        return (
+          <div key={idx} className="searchItem">
+            {item.phoneNumber}
+          </div>
+        );
       })
     )}
   </div>
