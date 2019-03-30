@@ -32,23 +32,39 @@ export default class Search extends Component {
     this.state = {
       data: fakeData
     };
+    this.debouncedHandleOnChange = this.debounce(
+      this.handleOnChange.bind(this),
+      500
+    );
   }
-  handleOnChange = e => {
-    console.log(e.target.value);
+
+  debounce = (func, wait) => {
+    let timer;
+    return (...args) => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => func(...args), wait);
+    };
+  };
+
+  handleOnChange = val => {
+    fetch('http://localhost:3001/stores/customers/get-all-customers', {
+      method: 'GET'
+    })
+      .then(response => response.json())
+      .then(a => console.log(a));
   };
 
   render() {
-    const { handleOnChange } = this;
+    const { debouncedHandleOnChange } = this;
     const { data } = this.state;
     return (
-      <div className="col-3 p-4">
-        <div className="col-12 p-2">
-          <Input
-            onChange={handleOnChange}
-            placeholder={'휴대폰 번호로 검색'}
-            className={'w-100'}
-          />
-        </div>
+      <div className="col-3">
+        <Input
+          onChange={e => {
+            debouncedHandleOnChange(e.target.value);
+          }}
+          placeholder={'휴대폰 번호로 검색'}
+        />
         <SearchResult data={data} />
       </div>
     );
