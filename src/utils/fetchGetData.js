@@ -1,3 +1,5 @@
+import { BASE_URI } from './constants';
+
 const fetchGetData = uri => {
   return fetch(`${BASE_URI}${uri}`, {
     method: 'GET'
