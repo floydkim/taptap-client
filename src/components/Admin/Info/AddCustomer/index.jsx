@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from '../../../common/Input';
 import Button from '../../../common/Button';
 
-export default class Signup extends Component {
+export default class AddCustomer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,7 +27,7 @@ export default class Signup extends Component {
           onBlur={handleOnBlur}
           placeholder={'신규 고객의 핸드폰 번호를 입력'}
         />
-        <Button value={'등록하기'} onClick={handleOnClick} />
+        <Button value={'등록하기'} onClick={handleOnClick} type={'text'} />
       </div>
     );
   }
