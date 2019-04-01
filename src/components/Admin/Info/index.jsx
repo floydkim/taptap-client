@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Coupons from './Coupons';
-import Signup from './Signup';
+import AddCustomer from './AddCustomer';
 
 const fakeData = { id: 1, count: 4 }; // 일단은 한 고객의 적립정보를 서버에서 받아온 것
 
@@ -11,7 +11,7 @@ export default class Info extends Component {
     return (
       <div className="col-9">
         <Coupons counts={{ count: fakeData.count, REQUIRED }} />
-        <Signup />
+        <AddCustomer />
       </div>
     );
   }

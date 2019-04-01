@@ -9,8 +9,8 @@ export default class Coupons extends Component {
     return (
       <div className="couponsDisplay">
         <CouponsDisplay counts={counts} />
-        <Button value={'사용하기'} />
-        <Button value={'적립하기'} />
+        <Button value={'사용하기'} type={'text'} />
+        <Button value={'적립하기'} type={'text'} />
       </div>
     );
   }

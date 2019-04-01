@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 export default class Login extends Component {
   constructor(props) {
@@ -20,8 +22,12 @@ export default class Login extends Component {
     const { isLogin } = this.state;
     const { onClick } = this;
     return (
-      <div onClick={onClick}>
-        {isLogin ? <Redirect to="/admin" /> : 'LoginTest'}
+      <div>
+        <SignIn />
+        <SignUp />
+        <div onClick={onClick}>
+          {isLogin ? <Redirect to="/admin" /> : 'LoginTest'}
+        </div>
       </div>
     );
   }

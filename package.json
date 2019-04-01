@@ -2,19 +2,11 @@
   "name": "client-taptap",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "immutable": "^4.0.0-rc.12",
-    "react": "^16.8.5",
-    "react-dom": "^16.8.5",
-    "react-router-dom": "^5.0.0",
-    "react-scripts": "2.1.8"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "precommit": "NODE_ENV=production lint-staged"
+    "eject": "react-scripts eject"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -32,7 +24,15 @@
     "not ie <= 11",
     "not op_mini all"
   ],
+  "dependencies": {
+    "immutable": "^4.0.0-rc.12",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8"
+  },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "eslint": "5.12.0",
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-import": "^2.16.0",
