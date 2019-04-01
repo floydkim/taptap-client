@@ -8,10 +8,15 @@ const REQUIRED = 10; // 서버에서 받아온 개수임
 
 export default class Info extends Component {
   render() {
+    const { isClickedAddCustomer, isClickedCustomer } = this.props;
     return (
       <div className="col-9">
-        <Coupons counts={{ count: fakeData.count, REQUIRED }} />
-        <AddCustomer />
+        {isClickedCustomer ? (
+          <Coupons counts={{ count: fakeData.count, REQUIRED }} />
+        ) : (
+          ''
+        )}
+        {isClickedAddCustomer ? <AddCustomer /> : ''}
       </div>
     );
   }

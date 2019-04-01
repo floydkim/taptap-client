@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Input from '../../../common/Input';
 import Button from '../../../common/Button';
+import './index.css';
 
 export default class AddCustomer extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class AddCustomer extends Component {
   render() {
     const { handleOnClick, handleOnBlur } = this;
     return (
-      <div>
+      <div className="addCustomer">
         <Input
           onBlur={handleOnBlur}
           placeholder={'신규 고객의 핸드폰 번호를 입력'}

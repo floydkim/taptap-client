@@ -48,6 +48,7 @@ export default class Search extends Component {
   render() {
     const { debouncedHandleOnChange } = this;
     const { data } = this.state;
+    const { clickAddCustomer, clickCustomer } = this.props;
     return (
       <div className="col-3 p-4">
         <div className="col-12 p-2">
@@ -59,7 +60,11 @@ export default class Search extends Component {
             className={'w-100'}
           />
         </div>
-        <SearchResult data={data} />
+        <SearchResult
+          data={data}
+          clickAddCustomer={clickAddCustomer}
+          clickCustomer={clickCustomer}
+        />
       </div>
     );
   }
