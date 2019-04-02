@@ -40,6 +40,10 @@ export default class Search extends Component {
             data: list
           });
         });
+    } else if (val.length === 0) {
+      this.setState({
+        data: List([])
+      });
     }
   };
 

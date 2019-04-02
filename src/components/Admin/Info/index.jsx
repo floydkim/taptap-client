@@ -22,7 +22,11 @@ export default class Info extends Component {
         ) : (
           ''
         )}
-        {isClickedAddCustomer ? <AddCustomer /> : ''}
+        {isClickedAddCustomer ? (
+          <AddCustomer clickCustomer={clickCustomer} />
+        ) : (
+          ''
+        )}
       </div>
     );
   }
