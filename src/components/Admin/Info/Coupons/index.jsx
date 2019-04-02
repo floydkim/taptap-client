@@ -20,7 +20,7 @@ export default class Coupons extends Component {
       })
       .then(() => {
         this.setState({ isWaiting: false });
-        clickCustomer(customerID);
+        clickCustomer(customerID); // Admin 컴포넌트의 함수 호출
       })
       .catch(error => {
         console.log(error);
@@ -30,8 +30,6 @@ export default class Coupons extends Component {
   render() {
     const { onClickInsertCoupon } = this;
     const { isWaiting } = this.state;
-    // const { count, REQUIRED } = this.props.counts;
-    // const counts = { count, REQUIRED };
     const counts = this.props.counts;
     return (
       <div className="couponsDisplay">
