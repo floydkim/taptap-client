@@ -4,10 +4,24 @@ import AddCustomer from './AddCustomer';
 
 export default class Info extends Component {
   render() {
-    const { isClickedAddCustomer, isClickedCustomer, counts } = this.props;
+    const {
+      isClickedAddCustomer,
+      isClickedCustomer,
+      clickCustomer,
+      counts,
+      idObject
+    } = this.props;
     return (
       <div className="col-9">
-        {isClickedCustomer ? <Coupons counts={counts} /> : ''}
+        {isClickedCustomer ? (
+          <Coupons
+            counts={counts}
+            idObject={idObject}
+            clickCustomer={clickCustomer}
+          />
+        ) : (
+          ''
+        )}
         {isClickedAddCustomer ? <AddCustomer /> : ''}
       </div>
     );
