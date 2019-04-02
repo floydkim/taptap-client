@@ -27,14 +27,31 @@ export default class Coupons extends Component {
       });
   };
 
+  onClickUseCoupon = () => {
+    const { customerID, storeID } = this.props.idObject;
+    const { clickCustomer } = this.props;
+    utils
+      .fetchPostData('/stores/coupons/use-coupons', {
+        storeID,
+        customerID
+      })
+      .then(() => {
+        clickCustomer(customerID); // Admin 컴포넌트의 함수 호출
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
   render() {
-    const { onClickInsertCoupon } = this;
+    const { onClickInsertCoupon, onClickUseCoupon } = this;
     const { isWaiting } = this.state;
     const counts = this.props.counts;
     return (
       <div className="couponsDisplay">
+        손님 ID : {this.props.idObject.customerID}
         <CouponsDisplay counts={counts} />
-        <Button value={'사용하기'} type={'text'} />
+        <Button value={'사용하기'} type={'text'} onClick={onClickUseCoupon} />
         <Button
           value={isWaiting ? '적립 중' : '적립하기'}
           type={'text'}
