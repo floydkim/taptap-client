@@ -3,6 +3,8 @@ import Input from '../../common/Input';
 import SearchResult from './SearchResult';
 import { Map, List } from 'immutable';
 import './index.css';
+import utils from '../../../utils';
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +13,7 @@ export default class Search extends Component {
     };
     this.debouncedHandleOnChange = this.debounce(
       this.handleOnChange.bind(this),
-      500
+      0
     );
   }
 
@@ -25,14 +27,10 @@ export default class Search extends Component {
 
   handleOnChange = val => {
     if (val.length === 4) {
-      fetch('http://localhost:3001/stores/customers/find-last-number', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ phoneNumber: val })
-      })
-        .then(response => response.json())
+      utils
+        .fetchPostData('/stores/customers/find-last-number', {
+          phoneNumber: val
+        })
         .then(users => {
           let list = List([]);
           users.forEach(user => {

@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 
 export default class CouponsDisplay extends Component {
-  constructor(props) {
-    super(props);
-    const { count, REQUIRED } = props.counts;
-    this.state = {
-      count,
-      REQUIRED
-    };
-  }
   render() {
-    const { count, REQUIRED } = this.state;
+    const { count, REQUIRED } = this.props.counts;
     const couponsArray = [];
     for (let i = 0; i < count; i++) {
       couponsArray.push(

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from './Search';
 import Info from './Info';
+import utils from '../../utils';
 
 export default class Admin extends Component {
   constructor(props) {
@@ -8,7 +9,12 @@ export default class Admin extends Component {
     this.state = {
       // inital state
       isClickedAddCustomer: false,
-      isClickedCustomer: false
+      isClickedCustomer: false,
+      // 로그인 성공시 받아오는 정보
+      STORE_ID: 2, // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
+      REQUIRED: 10, // 필요 쿠폰 수
+      // 손님 클릭시 가져올 정보
+      couponsCount: 1 // 적립한 쿠폰 수
     };
   }
 
@@ -20,18 +26,31 @@ export default class Admin extends Component {
   };
 
   clickCustomer = id => {
-    console.log(`id가 ${id}인 사용자를 클릭했음.`);
-    // 이제 서버에 해당 id 사용자의 적립된 쿠폰 수를 가져와야 함.
-    // 가져와서 state에 저장할 필요는 없고 id 랑 count 를 Info 컴포넌트에게 전달만 해주면 됨.
-    this.setState({
-      isClickedAddCustomer: false,
-      isClickedCustomer: true
-    });
+    utils
+      .fetchPostData('/stores/coupons/get-coupons-count', {
+        customerID: id,
+        storeID: this.state.STORE_ID
+      })
+      .then(response => {
+        this.setState({
+          isClickedAddCustomer: false,
+          isClickedCustomer: true,
+          couponsCount: response.count
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
     const { clickAddCustomer, clickCustomer } = this;
-    const { isClickedAddCustomer, isClickedCustomer } = this.state;
+    const {
+      isClickedAddCustomer,
+      isClickedCustomer,
+      couponsCount,
+      REQUIRED
+    } = this.state;
     return (
       <div className="container outerHeight">
         <div className="row outerHeight">
@@ -42,6 +61,7 @@ export default class Admin extends Component {
           <Info
             isClickedAddCustomer={isClickedAddCustomer}
             isClickedCustomer={isClickedCustomer}
+            counts={{ count: couponsCount, REQUIRED }}
           />
         </div>
       </div>
