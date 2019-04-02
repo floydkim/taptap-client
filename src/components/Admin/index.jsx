@@ -14,7 +14,8 @@ export default class Admin extends Component {
       STORE_ID: 2, // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
       REQUIRED: 10, // 필요 쿠폰 수
       // 손님 클릭시 가져올 정보
-      couponsCount: 1 // 적립한 쿠폰 수
+      couponsCount: 1, // 적립한 쿠폰 수
+      customerID: null
     };
   }
 
@@ -35,7 +36,8 @@ export default class Admin extends Component {
         this.setState({
           isClickedAddCustomer: false,
           isClickedCustomer: true,
-          couponsCount: response.count
+          couponsCount: response.count,
+          customerID: id
         });
       })
       .catch(error => {
@@ -49,7 +51,9 @@ export default class Admin extends Component {
       isClickedAddCustomer,
       isClickedCustomer,
       couponsCount,
-      REQUIRED
+      REQUIRED,
+      STORE_ID,
+      customerID
     } = this.state;
     return (
       <div className="container outerHeight">
@@ -61,7 +65,9 @@ export default class Admin extends Component {
           <Info
             isClickedAddCustomer={isClickedAddCustomer}
             isClickedCustomer={isClickedCustomer}
+            clickCustomer={clickCustomer}
             counts={{ count: couponsCount, REQUIRED }}
+            idObject={{ customerID, storeID: STORE_ID }}
           />
         </div>
       </div>
