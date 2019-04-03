@@ -1,3 +1,7 @@
 .couponsDisplay {
   width: 504px;
 }
+
+.couponsDisplay img {
+  width: 50px;
+}

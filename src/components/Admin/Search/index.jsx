@@ -53,13 +53,23 @@ export default class Search extends Component {
     const { clickAddCustomer, clickCustomer } = this.props;
     return (
       <div className="col-3 p-4">
-        <div className="col-12 p-2">
+        <div className="input-group mb-3">
+          <div className="input-group-prepend">
+            <span className="input-group-text" id="basic-addon1">
+              <img
+                src="https://img.icons8.com/metro/26/000000/phone.png"
+                width="16"
+                alt="phone number"
+              />
+            </span>
+          </div>
           <Input
             onChange={e => {
               debouncedHandleOnChange(e.target.value);
             }}
-            placeholder={'휴대폰 번호로 검색'}
-            className={'w-100'}
+            placeholder={'휴대폰 번호 뒷자리 검색'}
+            className={'form-control'}
+            type={'text'}
           />
         </div>
         <SearchResult
