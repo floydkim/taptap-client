@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './Search';
 import Info from './Info';
 import utils from '../../utils';
+import './index.css';
 
 export default class Admin extends Component {
   constructor(props) {

@@ -1,9 +1,20 @@
 .searchItem {
+  padding: 5px;
+  padding-top: 6px;
   border: 0px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #999;
+  transition-duration: 500ms;
+}
+.searchItem:hover {
+  color: black;
+  background-color: #efefef;
+  cursor: pointer;
 }
 
 .searchResult {
   height: 500px;
   overflow: scroll;
+  border: 1px solid rgb(199, 206, 213);
+  border-radius: 4px;
+  color: #777;
 }
