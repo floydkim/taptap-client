@@ -20,13 +20,17 @@ class SignIn extends Component {
             <Input placeholder={'email'} type={'text'} ref={this.email} />
           </div>
           <div className="col-12">
-            <Input placeholder={'***'} type={'password'} ref={this.password} />
+            <Input
+              placeholder={'password'}
+              type={'password'}
+              ref={this.password}
+            />
           </div>
           <div className="col-12">
             <Button
               value={'로그인'}
               onClick={() => {
-                this.props.history.push('/admin');
+                this.props.history.push('/admin', { state: { id: 2 } });
               }}
             />
             <Button

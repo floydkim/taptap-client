@@ -24,11 +24,15 @@ class SignUp extends Component {
             <Input placeholder={'email ID'} type={'text'} ref={idInput} />
           </div>
           <div className="col-12">
-            <Input placeholder={'***'} type={'password'} ref={passwordInput} />
+            <Input
+              placeholder={'password'}
+              type={'password'}
+              ref={passwordInput}
+            />
           </div>
           <div className="col-12">
             <Input
-              placeholder={'****'}
+              placeholder={'password'}
               type={'password'}
               ref={passwordCheckInput}
             />

@@ -11,7 +11,7 @@ export default class Admin extends Component {
       isClickedAddCustomer: false,
       isClickedCustomer: false,
       // 로그인 성공시 받아오는 정보
-      STORE_ID: 2, // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
+      STORE_ID: this.props.location.state.id || 4, // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
       REQUIRED: 10, // 필요 쿠폰 수
       // 손님 클릭시 가져올 정보
       couponsCount: 1, // 적립한 쿠폰 수
