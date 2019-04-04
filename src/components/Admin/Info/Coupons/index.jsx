@@ -14,7 +14,7 @@ export default class Coupons extends Component {
   }
 
   onClickInsertCoupon = () => {
-    const { customerID, storeID } = this.props.idObject;
+    const { customerID, storeID, phoneNumber } = this.props.idObject;
     const { clickCustomer } = this.props;
     this.setState({ isWaiting: true });
     if (!this.preventFetching) {
@@ -26,7 +26,7 @@ export default class Coupons extends Component {
         })
         .then(() => {
           this.setState({ isWaiting: false });
-          clickCustomer(customerID); // Admin 컴포넌트의 함수 호출
+          clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
           this.preventFetching = false;
         })
         .catch(error => {
@@ -39,7 +39,7 @@ export default class Coupons extends Component {
   };
 
   onClickUseCoupon = () => {
-    const { customerID, storeID } = this.props.idObject;
+    const { customerID, storeID, phoneNumber } = this.props.idObject;
     const { clickCustomer } = this.props;
     utils
       .fetchPostData('/stores/coupons/use-coupons', {
@@ -47,7 +47,7 @@ export default class Coupons extends Component {
         customerID
       })
       .then(() => {
-        clickCustomer(customerID); // Admin 컴포넌트의 함수 호출
+        clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
       })
       .catch(error => {
         console.log(error);

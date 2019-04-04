@@ -23,6 +23,13 @@ export default class CouponsDisplay extends Component {
         />
       );
     }
-    return <div className="couponsPaper p-2">{couponsArray}</div>;
+    return (
+      <div>
+        <div id="couponsCountDisplay">
+          <span id="couponsCountDisplay-span">{count}</span> / {REQUIRED}
+        </div>
+        <div className="couponsPaper p-2">{couponsArray}</div>
+      </div>
+    );
   }
 }

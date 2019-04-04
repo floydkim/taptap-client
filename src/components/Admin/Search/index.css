@@ -2,19 +2,35 @@
   padding: 5px;
   padding-top: 6px;
   border: 0px;
-  border-bottom: 1px solid #999;
-  transition-duration: 500ms;
+  border-bottom: 1px solid rgb(177, 185, 194);
+  transition-property: background-color;
+  transition-duration: 200ms;
+  color: #555;
 }
 .searchItem:hover {
   color: black;
+  font-weight: 600;
   background-color: rgb(243, 216, 49);
   cursor: pointer;
 }
 
 .searchResult {
-  height: 500px;
+  height: 400px;
   overflow: scroll;
   border: 1px solid rgb(199, 206, 213);
   border-radius: 4px;
   color: #777;
+}
+
+#div-addCustomer {
+  color: black;
+  text-align: center;
+  background-color: lightgray;
+  padding: 4px;
+  margin: 8px;
+  font-weight: 700;
+}
+#div-addCustomer:hover {
+  background-color: rgb(243, 216, 49);
+  cursor: pointer;
 }
