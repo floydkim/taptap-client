@@ -16,7 +16,7 @@ export default class AddCustomer extends Component {
 
   handleOnClick = e => {
     let phoneNumber = e.nativeEvent.path[1].children[0].value;
-    if (phoneNumber === 13) {
+    if (phoneNumber.length === 13) {
       this.setState({
         progress: '등록 중',
         phoneNumber
