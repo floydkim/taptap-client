@@ -7,7 +7,7 @@
 }
 .searchItem:hover {
   color: black;
-  background-color: #efefef;
+  background-color: rgb(243, 216, 49);
   cursor: pointer;
 }
 

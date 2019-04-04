@@ -31,7 +31,8 @@ export default class Admin extends Component {
       STORE_NAME: '',
       // 손님 클릭시 가져올 정보
       couponsCount: 1, // 적립한 쿠폰 수
-      customerID: null
+      customerID: null,
+      phoneNumber: ''
     };
   }
 
@@ -42,7 +43,7 @@ export default class Admin extends Component {
     });
   };
 
-  clickCustomer = id => {
+  clickCustomer = (id, phoneNumber) => {
     utils
       .fetchPostData('/stores/coupons/get-coupons-count', {
         customerID: id,
@@ -53,7 +54,8 @@ export default class Admin extends Component {
           isClickedAddCustomer: false,
           isClickedCustomer: true,
           couponsCount: response.count,
-          customerID: id
+          customerID: id,
+          phoneNumber
         });
       })
       .catch(error => {
@@ -70,7 +72,8 @@ export default class Admin extends Component {
       REQUIRED,
       STORE_NAME,
       STORE_ID,
-      customerID
+      customerID,
+      phoneNumber
     } = this.state;
     return (
       <div className="container outerHeight">
@@ -84,7 +87,12 @@ export default class Admin extends Component {
             isClickedCustomer={isClickedCustomer}
             clickCustomer={clickCustomer}
             counts={{ count: couponsCount, REQUIRED }}
-            idObject={{ customerID, storeID: STORE_ID, storeName: STORE_NAME }}
+            idObject={{
+              customerID,
+              storeID: STORE_ID,
+              storeName: STORE_NAME,
+              phoneNumber
+            }}
           />
         </div>
       </div>

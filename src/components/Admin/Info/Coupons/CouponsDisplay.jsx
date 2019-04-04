@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './index.css';
 
 export default class CouponsDisplay extends Component {
   render() {
@@ -22,6 +23,6 @@ export default class CouponsDisplay extends Component {
         />
       );
     }
-    return <div>{couponsArray}</div>;
+    return <div className="couponsPaper p-2">{couponsArray}</div>;
   }
 }

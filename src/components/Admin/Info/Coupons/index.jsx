@@ -59,8 +59,11 @@ export default class Coupons extends Component {
     const { isWaiting } = this.state;
     const counts = this.props.counts;
     return (
-      <div className="couponsDisplay">
-        손님 ID : {this.props.idObject.customerID}
+      <div className="couponsDisplay p-3">
+        <span className="couponsDisplay-phoneNumber">
+          {this.props.idObject.phoneNumber}
+        </span>
+        <div>(손님 ID: {this.props.idObject.customerID})</div>
         <CouponsDisplay counts={counts} />
         {counts.count >= counts.REQUIRED ? (
           <Button value={'사용하기'} type={'text'} onClick={onClickUseCoupon} />
