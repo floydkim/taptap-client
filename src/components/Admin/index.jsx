@@ -11,8 +11,11 @@ export default class Admin extends Component {
       .fetchPostData('/stores/rewards/get-required', {
         storeID: this.props.location.state.id
       })
-      .then(required => {
-        this.state.REQUIRED = required.REQUIRED;
+      .then(response => {
+        this.setState({
+          REQUIRED: response.REQUIRED,
+          STORE_NAME: response.storeName
+        });
       })
       .catch(error => {
         console.log(error);
@@ -22,7 +25,10 @@ export default class Admin extends Component {
       isClickedAddCustomer: false,
       isClickedCustomer: false,
       // 로그인 성공시 받아오는 정보
-      STORE_ID: this.props.location.state.id || 4, // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
+      STORE_ID: this.props.location.state.id, // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
+      // 컴포넌트 띄울때 가져올 정보
+      REQUIRED: 0,
+      STORE_NAME: '',
       // 손님 클릭시 가져올 정보
       couponsCount: 1, // 적립한 쿠폰 수
       customerID: null
@@ -62,6 +68,7 @@ export default class Admin extends Component {
       isClickedCustomer,
       couponsCount,
       REQUIRED,
+      STORE_NAME,
       STORE_ID,
       customerID
     } = this.state;
@@ -77,7 +84,7 @@ export default class Admin extends Component {
             isClickedCustomer={isClickedCustomer}
             clickCustomer={clickCustomer}
             counts={{ count: couponsCount, REQUIRED }}
-            idObject={{ customerID, storeID: STORE_ID }}
+            idObject={{ customerID, storeID: STORE_ID, storeName: STORE_NAME }}
           />
         </div>
       </div>
