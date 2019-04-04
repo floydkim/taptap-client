@@ -13,7 +13,8 @@ export default class Info extends Component {
     } = this.props;
     return (
       <div className="col-9">
-        가게 ID : {this.props.idObject.storeID}
+        <b>{this.props.idObject.storeName}</b> 사장님 하이! (가게 ID :{' '}
+        {this.props.idObject.storeID})
         <br />
         {isClickedCustomer ? (
           <Coupons
