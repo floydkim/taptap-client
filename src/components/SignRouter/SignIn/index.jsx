@@ -30,7 +30,7 @@ class SignIn extends Component {
             <Button
               value={'로그인'}
               onClick={() => {
-                this.props.history.push('/admin', { state: { id: 2 } });
+                this.props.history.push('/admin', { id: 6 });
               }}
             />
             <Button
