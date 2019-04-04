@@ -11,6 +11,7 @@ class SignUp extends Component {
     this.passwordCheck = React.createRef();
     this.storeName = React.createRef();
     this.signUpResult = React.createRef();
+    this.REQUIRED = React.createRef();
   }
 
   signUp = async () => {
@@ -24,6 +25,16 @@ class SignUp extends Component {
       name: this.storeName.current.value
     });
 
+    // 이제 email로 storeID를 받아오면 된다.
+    let { storeID } = await fetchPostData('/stores/stores/get-store-id', {
+      email: this.email.current.value
+    });
+    // 받아온 storeID에 required 보상정보를 입력한다. 이건 응답 기다리지 않아도 됨.
+    fetchPostData('/stores/rewards/insert-reward', {
+      storeID: storeID,
+      required: this.REQUIRED.current.value
+    });
+
     if (result.isSuccess) {
       this.props.history.push('/');
     } else {
@@ -32,7 +43,14 @@ class SignUp extends Component {
   };
 
   render() {
-    const { email, password, passwordCheck, storeName, signUpResult } = this;
+    const {
+      email,
+      password,
+      passwordCheck,
+      storeName,
+      signUpResult,
+      REQUIRED
+    } = this;
 
     return (
       <div className="container">
@@ -61,6 +79,13 @@ class SignUp extends Component {
               placeholder={'운영중인 매장 이름을 입력하세요'}
               type={'text'}
               ref={storeName}
+            />
+          </div>
+          <div className="col-12">
+            <input
+              placeholder={'몇 장 모아야 하나요?'}
+              type={'text'}
+              ref={REQUIRED}
             />
           </div>
           <div className="col-12">
