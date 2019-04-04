@@ -52,7 +52,7 @@ export default class Search extends Component {
     const { data } = this.state;
     const { clickAddCustomer, clickCustomer } = this.props;
     return (
-      <div className="col-3 p-4">
+      <div className="col-4 p-4">
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">

@@ -5,6 +5,8 @@
   background-color: rgb(220, 220, 220);
   font-size: 20px;
   color: black;
+  transition-property: background-color;
+  transition-duration: 200ms;
 }
 .commonButton:hover {
   background-color: rgb(243, 216, 49);
