@@ -1,4 +1,5 @@
 import React from 'react';
+import './Input.css';
 
 const Input = ({
   type,
@@ -7,14 +8,16 @@ const Input = ({
   onBlur,
   className,
   value,
-  ref
+  ref,
+  onKeyDown
 }) => (
   <input
     placeholder={placeholder}
     onChange={onChange}
     onBlur={onBlur}
+    onKeyDown={onKeyDown}
     type={type}
-    className={className}
+    className={`commonInput ${className}`}
     value={value}
     ref={ref}
   />

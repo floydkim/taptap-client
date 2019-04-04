@@ -76,8 +76,8 @@ export default class Admin extends Component {
       phoneNumber
     } = this.state;
     return (
-      <div className="container outerHeight">
-        <div className="row outerHeight">
+      <div className="container outerSize">
+        <div className="row outerSize">
           <Search
             clickAddCustomer={clickAddCustomer}
             clickCustomer={clickCustomer}

@@ -3,3 +3,13 @@
   border-radius: 8px;
   box-shadow: 3px 3px 5px #00000066;
 }
+
+#span-storeName {
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.outerSize {
+  width: 900px;
+}

@@ -9,18 +9,21 @@ export default class Info extends Component {
       isClickedCustomer,
       clickCustomer,
       counts,
-      idObject
+      idObject,
+      phoneNumber
     } = this.props;
     return (
-      <div className="col-9">
-        <b>{this.props.idObject.storeName}</b> 사장님 하이! (가게 ID :{' '}
-        {this.props.idObject.storeID})
-        <br />
+      <div className="col-8 p-4">
+        <div>
+          <span id="span-storeName">{idObject.storeName}</span> 사장님 하이!
+          (가게 ID : {idObject.storeID})
+        </div>
         {isClickedCustomer ? (
           <Coupons
             counts={counts}
             idObject={idObject}
             clickCustomer={clickCustomer}
+            phoneNumber={phoneNumber}
           />
         ) : (
           ''
