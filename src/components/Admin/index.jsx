@@ -7,13 +7,22 @@ import './index.css';
 export default class Admin extends Component {
   constructor(props) {
     super(props);
+    utils
+      .fetchPostData('/stores/rewards/get-required', {
+        storeID: this.props.location.state.id
+      })
+      .then(required => {
+        this.state.REQUIRED = required.REQUIRED;
+      })
+      .catch(error => {
+        console.log(error);
+      });
     this.state = {
       // inital state
       isClickedAddCustomer: false,
       isClickedCustomer: false,
       // 로그인 성공시 받아오는 정보
       STORE_ID: this.props.location.state.id || 4, // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
-      REQUIRED: 10, // 필요 쿠폰 수
       // 손님 클릭시 가져올 정보
       couponsCount: 1, // 적립한 쿠폰 수
       customerID: null
