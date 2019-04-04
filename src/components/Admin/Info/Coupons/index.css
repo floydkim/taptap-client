@@ -1,7 +1,22 @@
 .couponsDisplay {
   width: 504px;
+  border: 1px solid rgb(199, 206, 213);
+  border-radius: 6px;
 }
 
 .couponsDisplay img {
   width: 50px;
+}
+
+.couponsDisplay-phoneNumber {
+  /* background-color: #eee; */
+  /* padding: 6px 10px; */
+  font-weight: 700;
+}
+
+.couponsPaper {
+  border: 0px;
+  border-radius: 6px;
+  background-color: #efefef;
+  margin: 10px 0px;
 }

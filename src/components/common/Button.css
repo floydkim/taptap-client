@@ -1,9 +1,12 @@
 .commonButton {
   display: block;
   width: 100%;
-  background-color: rgb(255, 240, 252);
+  border: 0px solid black;
+  background-color: rgb(220, 220, 220);
   font-size: 20px;
+  color: black;
 }
 .commonButton:hover {
-  background-color: rgb(255, 203, 248);
+  background-color: rgb(243, 216, 49);
+  color: black;
 }

@@ -13,7 +13,9 @@ const SearchResult = ({ data, clickAddCustomer, clickCustomer }) => (
           <div
             key={idx}
             className="searchItem"
-            onClick={() => clickCustomer(item.get('id'))}
+            onClick={() =>
+              clickCustomer(item.get('id'), item.get('phoneNumber'))
+            }
           >
             {item.get('phoneNumber')}
           </div>
