@@ -1,6 +1,14 @@
 import React from 'react';
 
-const Input = ({ type, onChange, placeholder, onBlur, className, value }) => (
+const Input = ({
+  type,
+  onChange,
+  placeholder,
+  onBlur,
+  className,
+  value,
+  ref
+}) => (
   <input
     placeholder={placeholder}
     onChange={onChange}
@@ -8,6 +16,7 @@ const Input = ({ type, onChange, placeholder, onBlur, className, value }) => (
     type={type}
     className={className}
     value={value}
+    ref={ref}
   />
 );
 
