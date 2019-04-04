@@ -1,14 +1,30 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import fetchPostData from '../../utils/fetchPostData';
+import fetchGetData from '../../utils/fetchGetData';
 
 export default class SignRouter extends Component {
+  constructor(props) {
+    super(props);
+
+    this.id = undefined;
+  }
+
   hasSignedIn = () => {
-    // TODO:
-    return false;
+    let result = {
+      isSuccess: false
+    };
+    (async () => {
+      result = await fetchGetData('/stores/stores/signin-store-with-token');
+      this.id = result.id || undefined;
+      console.log(result);
+    })();
+
+    return result ? result.isSuccess : false;
   };
 
   getID = () => {
-    return 2;
+    return this.id;
   };
 
   render() {
