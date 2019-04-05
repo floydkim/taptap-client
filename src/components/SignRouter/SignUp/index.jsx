@@ -26,14 +26,16 @@ class SignUp extends Component {
     });
 
     // 이제 email로 storeID를 받아오면 된다.
-    let { storeID } = await fetchPostData('/stores/stores/get-store-id', {
-      email: this.email.current.value
-    });
-    // 받아온 storeID에 required 보상정보를 입력한다. 이건 응답 기다리지 않아도 됨.
-    fetchPostData('/stores/rewards/insert-reward', {
-      storeID: storeID,
-      required: this.REQUIRED.current.value
-    });
+    if (this.email.current.value !== '') {
+      let { storeID } = await fetchPostData('/stores/stores/get-store-id', {
+        email: this.email.current.value
+      });
+      // 받아온 storeID에 required 보상정보를 입력한다. 이건 응답 기다리지 않아도 됨.
+      fetchPostData('/stores/rewards/insert-reward', {
+        storeID: storeID,
+        required: this.REQUIRED.current.value
+      });
+    }
 
     if (result.isSuccess) {
       this.props.history.push('/');
@@ -53,25 +55,36 @@ class SignUp extends Component {
     } = this;
 
     return (
-      <div className="container">
-        <div className="row">
+      <div className="container sign-layout">
+        <div className="row p-4">
           <div className="col-12">
             <h1>꾹꾹이</h1>
           </div>
           <div className="col-12">
-            <h4 ref={signUpResult}>가입 결과</h4>
+            <h4 ref={signUpResult}>내용을 입력해주세요!</h4>
           </div>
           <div className="col-12">
-            <input placeholder={'email ID'} type={'text'} ref={email} />
-          </div>
-          <div className="col-12">
-            <input placeholder={'password'} type={'password'} ref={password} />
+            <input
+              placeholder={'email ID'}
+              type={'text'}
+              ref={email}
+              className={'form-control'}
+            />
           </div>
           <div className="col-12">
             <input
               placeholder={'password'}
               type={'password'}
+              ref={password}
+              className={'form-control'}
+            />
+          </div>
+          <div className="col-12">
+            <input
+              placeholder={'password 확인'}
+              type={'password'}
               ref={passwordCheck}
+              className={'form-control'}
             />
           </div>
           <div className="col-12">
@@ -79,6 +92,7 @@ class SignUp extends Component {
               placeholder={'운영중인 매장 이름을 입력하세요'}
               type={'text'}
               ref={storeName}
+              className={'form-control'}
             />
           </div>
           <div className="col-12">
@@ -86,9 +100,10 @@ class SignUp extends Component {
               placeholder={'몇 장 모아야 하나요?'}
               type={'text'}
               ref={REQUIRED}
+              className={'form-control'}
             />
           </div>
-          <div className="col-12">
+          <div className="col-12 mt-2">
             <Button value={'가입하기'} onClick={this.signUp} />
             <Button
               value={'돌아가기'}
