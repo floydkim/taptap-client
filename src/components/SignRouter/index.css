@@ -1,0 +1,20 @@
+.sign-layout {
+  width: 400px;
+  text-align: center;
+}
+
+.sign-layout h4 {
+  display: inline-block;
+}
+
+.sign-layout input {
+  margin: 2px auto;
+}
+
+.sign-layout button {
+  background-color: rgb(253, 202, 10);
+}
+.sign-layout button:hover {
+  background-color: hsl(46, 98%, 67%);
+  color: rgb(223, 58, 47);
+}

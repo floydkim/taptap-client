@@ -1,0 +1,27 @@
+.signin-failed {
+  background-color: rgb(219, 62, 62);
+  color: white;
+  width: 200px;
+  padding: 6px;
+  border-radius: 10px;
+  text-align: center;
+}
+.signin {
+  background-color: rgb(246, 246, 246);
+  width: 200px;
+  padding: 6px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+h1 {
+  font-family: 'Gamja Flower', cursive;
+  font-weight: bold;
+  font-size: 50px;
+  color: rgb(73, 73, 73);
+}
+
+#img-muzi {
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
+}

@@ -3,14 +3,15 @@
   padding-top: 6px;
   border: 0px;
   border-bottom: 1px solid rgb(177, 185, 194);
+  border-top-right-radius: 20px;
   transition-property: background-color;
   transition-duration: 200ms;
   color: #555;
 }
 .searchItem:hover {
-  color: black;
+  color: #3a3a3a;
   font-weight: 600;
-  background-color: rgb(243, 216, 49);
+  background-color: rgb(253, 202, 10);
   cursor: pointer;
 }
 
@@ -25,12 +26,14 @@
 #div-addCustomer {
   color: black;
   text-align: center;
-  background-color: lightgray;
+  background-color: rgb(253, 202, 10);
   padding: 4px;
   margin: 8px;
   font-weight: 700;
+  transition-duration: 200ms;
 }
 #div-addCustomer:hover {
-  background-color: rgb(243, 216, 49);
+  background-color: hsl(46, 98%, 67%);
+  color: rgb(223, 58, 47);
   cursor: pointer;
 }
