@@ -1,0 +1,26 @@
+#signup-form {
+  width: 100%;
+}
+
+.sign-layout .button-back {
+  width: 322px;
+  margin: auto;
+  margin-top: -16px;
+}
+
+.signup-failed {
+  background-color: rgb(219, 62, 62);
+  color: white;
+  width: 300px;
+  padding: 6px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.signup {
+  background-color: rgb(246, 246, 246);
+  width: 300px;
+  padding: 6px;
+  border-radius: 10px;
+  text-align: center;
+}

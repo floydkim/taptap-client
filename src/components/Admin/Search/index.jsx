@@ -44,6 +44,7 @@ export default class Search extends Component {
       this.setState({
         data: List([])
       });
+    } else if (val.length > 4) {
     }
   };
 
@@ -63,13 +64,23 @@ export default class Search extends Component {
               />
             </span>
           </div>
+          {/* TODO : 입력 4자리로 제한!!!!!! !!!!!!!!!*/}
           <Input
             onChange={e => {
-              debouncedHandleOnChange(e.target.value);
+              let four = '';
+              if (e.target.value.length === 4) {
+                four = e.target.value;
+                console.log(e.target.value, four);
+                debouncedHandleOnChange(e.target.value);
+              } else if (e.target.value.length > 4) {
+                e.target.value = four;
+              }
             }}
             placeholder={'휴대폰 번호 뒷자리 검색'}
             className={'form-control'}
-            type={'text'}
+            type={'number'}
+            min={'0'}
+            max={'9999'}
           />
         </div>
         <SearchResult

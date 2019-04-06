@@ -1,7 +1,9 @@
 .couponsDisplay {
   width: 504px;
+  height: 424px;
   border: 1px solid rgb(199, 206, 213);
   border-radius: 6px;
+  background-color: #ffffffbb;
 }
 
 .couponsDisplay img {
@@ -16,7 +18,7 @@
 .couponsPaper {
   border: 0px;
   border-radius: 6px;
-  background-color: #efefef;
+  background-color: #efefefbb;
   margin-bottom: 10px;
 }
 

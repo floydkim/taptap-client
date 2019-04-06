@@ -41,29 +41,41 @@ class SignIn extends Component {
               로그인 해주세요!
             </h4>
           </div>
+          <form
+            id="signin-form"
+            onSubmit={e => {
+              e.preventDefault();
+            }}
+          >
+            <div className="form-group">
+              <div className="col-12">
+                <input
+                  placeholder={'ID : 메일 주소'}
+                  type={'text'}
+                  ref={this.email}
+                  className={'form-control'}
+                />
+              </div>
+              <div className="col-12">
+                <input
+                  placeholder={'비밀번호'}
+                  type={'password'}
+                  ref={this.password}
+                  className={'form-control'}
+                />
+              </div>
+              <div className="col-12 mt-2">
+                <Button value={'로그인'} onClick={this.onClick} />
+              </div>
+            </div>
+          </form>
           <div className="col-12">
-            <input
-              placeholder={'email'}
-              type={'text'}
-              ref={this.email}
-              className={'form-control'}
-            />
-          </div>
-          <div className="col-12">
-            <input
-              placeholder={'password'}
-              type={'password'}
-              ref={this.password}
-              className={'form-control'}
-            />
-          </div>
-          <div className="col-12 mt-2">
-            <Button value={'로그인'} onClick={this.onClick} />
             <Button
               value={'가입하기'}
               onClick={() => {
                 this.props.history.push('/signUp');
               }}
+              className={'button-signup'}
             />
           </div>
         </div>

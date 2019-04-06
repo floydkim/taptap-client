@@ -54,6 +54,8 @@ export default class Coupons extends Component {
       });
   };
 
+  // onClickNotFulfilled
+
   render() {
     const { onClickInsertCoupon, onClickUseCoupon } = this;
     const { isWaiting } = this.state;

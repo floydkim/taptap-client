@@ -76,7 +76,7 @@ export default class Admin extends Component {
       phoneNumber
     } = this.state;
     return (
-      <div className="container outerSize">
+      <div className="container outerSize admin-background">
         <div className="row outerSize">
           <Search
             clickAddCustomer={clickAddCustomer}
