@@ -38,7 +38,7 @@ export default class Coupons extends Component {
           });
           setTimeout(() => {
             this.setState({
-              message: '랄랄라',
+              message: '좋은 하루 되세요!',
               messageClassName: 'couponsMessage'
             });
           }, 3000);
@@ -74,6 +74,12 @@ export default class Coupons extends Component {
           customerID
         })
         .then(() => {
+          setTimeout(() => {
+            this.setState({
+              message: '좋은 하루 되세요!',
+              messageClassName: 'couponsMessage'
+            });
+          }, 3000);
           iziToast.success({
             title: 'OK',
             message: '쿠폰이 사용 처리 되었습니다!'
@@ -111,7 +117,7 @@ export default class Coupons extends Component {
     });
     setTimeout(() => {
       this.setState({
-        message: '랄랄라',
+        message: '좋은 하루 되세요!',
         messageClassName: 'couponsMessage'
       });
     }, 3000);

@@ -148,7 +148,7 @@ class SignUp extends Component {
                   ref={REQUIRED}
                   className={'form-control'}
                   min={'2'}
-                  max={'20'}
+                  max={'10'}
                   required
                 />
               </div>
