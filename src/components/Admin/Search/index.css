@@ -45,3 +45,12 @@
   position: relative;
   left: -20px;
 }
+
+.img-deleteButton {
+  transition-duration: 200ms;
+}
+
+.img-deleteButton:hover {
+  filter: opacity(50%);
+  cursor: pointer;
+}

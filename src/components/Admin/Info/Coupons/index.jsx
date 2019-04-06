@@ -3,13 +3,14 @@ import CouponsDisplay from './CouponsDisplay';
 import Button from '../../../common/Button';
 import './index.css';
 import utils from '../../../../utils';
+import iziToast from 'izitoast';
 
 export default class Coupons extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isWaiting: false,
-      message: '적립 or 사용',
+      message: '좋은 하루 되세요!',
       messageClassName: 'couponsMessage'
     };
     this.preventFetching = false;
@@ -28,9 +29,21 @@ export default class Coupons extends Component {
         })
         .then(() => {
           this.setState({
-            isWaiting: false,
-            message: '쿠폰이 적립되었습니다',
+            message: '쿠폰이 적립되었습니다!',
             messageClassName: 'couponsMessage-used'
+          });
+          iziToast.success({
+            title: 'OK',
+            message: '쿠폰이 적립되었습니다!'
+          });
+          setTimeout(() => {
+            this.setState({
+              message: '랄랄라',
+              messageClassName: 'couponsMessage'
+            });
+          }, 3000);
+          this.setState({
+            isWaiting: false
           });
           clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
           this.preventFetching = false;
@@ -52,32 +65,60 @@ export default class Coupons extends Component {
   onClickUseCoupon = () => {
     const { customerID, storeID, phoneNumber } = this.props.idObject;
     const { clickCustomer } = this.props;
-    utils
-      .fetchPostData('/stores/coupons/use-coupons', {
-        storeID,
-        customerID
-      })
-      .then(() => {
-        this.setState({
-          message: '쿠폰이 사용 처리 되었습니다.',
-          messageClassName: 'couponsMessage-used'
+    this.setState({ isWaiting: true });
+    if (!this.preventFetching) {
+      this.preventFetching = true;
+      utils
+        .fetchPostData('/stores/coupons/use-coupons', {
+          storeID,
+          customerID
+        })
+        .then(() => {
+          iziToast.success({
+            title: 'OK',
+            message: '쿠폰이 사용 처리 되었습니다!'
+          });
+          this.setState({
+            isWaiting: false,
+            message: '쿠폰이 사용 처리 되었습니다.',
+            messageClassName: 'couponsMessage-used'
+          });
+
+          clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
+        })
+        .catch(error => {
+          this.setState({
+            isWaiting: false,
+            message: '쿠폰 사용 실패!',
+            messageClassName: 'couponsMessage-fail'
+          });
+          console.log(error);
         });
-        clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
-      })
-      .catch(error => {
-        this.setState({
-          isWaiting: false,
-          message: '쿠폰 사용 실패!',
-          messageClassName: 'couponsMessage-fail'
-        });
-        console.log(error);
-      });
+    } else {
+      console.log('아직 서버에서 응답이 오지 않았음');
+    }
   };
 
-  // onClickNotFulfilled
+  onClickNotFulfilled = () => {
+    const { count, REQUIRED } = this.props.counts;
+    iziToast.error({
+      title: '앗!',
+      message: `쿠폰이 ${REQUIRED - count}개 부족합니다!`
+    });
+    this.setState({
+      message: `쿠폰이 ${REQUIRED - count}개 부족합니다!`,
+      messageClassName: 'couponsMessage-fail'
+    });
+    setTimeout(() => {
+      this.setState({
+        message: '랄랄라',
+        messageClassName: 'couponsMessage'
+      });
+    }, 3000);
+  };
 
   render() {
-    const { onClickInsertCoupon, onClickUseCoupon } = this;
+    const { onClickInsertCoupon, onClickUseCoupon, onClickNotFulfilled } = this;
     const { isWaiting, message, messageClassName } = this.state;
     const counts = this.props.counts;
     return (
@@ -90,7 +131,11 @@ export default class Coupons extends Component {
         {counts.count >= counts.REQUIRED ? (
           <Button value={'사용하기'} type={'text'} onClick={onClickUseCoupon} />
         ) : (
-          <Button value={`필요개수: ${counts.REQUIRED}개`} type={'text'} />
+          <Button
+            value={`필요개수: ${counts.REQUIRED}개`}
+            type={'text'}
+            onClick={onClickNotFulfilled}
+          />
         )}
         <Button
           value={isWaiting ? '적립 중' : '적립하기'}

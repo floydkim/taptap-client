@@ -99,20 +99,8 @@ export default class AddCustomer extends Component {
     console.log('state : ', phoneNumber);
     console.log('input : ', inputText);
     if (phoneNumber.length <= inputText.length) {
-      // if (inputText.length === 3 || inputText.length === 8) {
-      if (
-        (inputText[3] !== undefined && inputText[3] !== '-') ||
-        (inputText[8] !== undefined && inputText[8] !== '-')
-      ) {
-        // this.setState({ phoneNumber: inputText + '-' });
-        this.setState({
-          phoneNumber:
-            inputText.slice(0, 3) +
-            '-' +
-            inputText.slice(4, 8) +
-            '-' +
-            inputText.slice(9)
-        });
+      if (inputText.length === 3 || inputText.length === 8) {
+        this.setState({ phoneNumber: inputText + '-' });
       } else {
         this.setState({
           phoneNumber: inputText

@@ -9,7 +9,8 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: List([])
+      data: List([]),
+      deleteBtn: false
     };
     this.debouncedHandleOnChange = this.debounce(
       this.handleOnChange.bind(this),
@@ -28,6 +29,7 @@ export default class Search extends Component {
 
   handleOnChange = val => {
     if (val.length === 4) {
+      this.setState({ deleteBtn: true });
       utils
         .fetchPostData('/stores/customers/find-last-number', {
           phoneNumber: val
@@ -43,21 +45,33 @@ export default class Search extends Component {
         });
     } else if (val.length === 0) {
       this.setState({
-        data: List([])
+        data: List([]),
+        deleteBtn: false
       });
     }
   };
 
   render() {
     const { debouncedHandleOnChange } = this;
-    const { data } = this.state;
+    const { data, deleteBtn } = this.state;
     const { clickAddCustomer, clickCustomer } = this.props;
     return (
       <div className="col-4 p-4">
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
-              <img src="/phone.png" width="16" alt="phone number" />
+              {deleteBtn ? (
+                <img
+                  src="/delete.png"
+                  width="16"
+                  onClick={e => {
+                    e.nativeEvent.path[3].children[1].value = '';
+                  }}
+                  className="img-deleteButton"
+                />
+              ) : (
+                <img src="/phone.png" width="16" alt="phone number" />
+              )}
             </span>
           </div>
           <Input
