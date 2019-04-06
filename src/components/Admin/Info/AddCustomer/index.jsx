@@ -12,6 +12,7 @@ export default class AddCustomer extends Component {
       progress: '등록하기'
     };
     this.preventFetching = false;
+    this.inputPhoneNumber = '';
   }
 
   handleOnClick = e => {
@@ -47,7 +48,7 @@ export default class AddCustomer extends Component {
         console.log('아직 서버에서 응답이 오지 않았음');
       }
     } else {
-      console.log('핸드폰 번호를 모두 입력해주세요 000-0000-0000');
+      console.log('형식에 맞게 입력해주세요 010-0000-0000');
     }
   };
 
@@ -94,7 +95,9 @@ export default class AddCustomer extends Component {
   handleOnChange = e => {
     const inputText = e.nativeEvent.target.value;
     const { phoneNumber } = this.state;
-
+    console.log('----------------------');
+    console.log('state : ', phoneNumber);
+    console.log('input : ', inputText);
     if (phoneNumber.length <= inputText.length) {
       if (inputText.length === 3 || inputText.length === 8) {
         this.setState({ phoneNumber: inputText + '-' });
@@ -119,7 +122,13 @@ export default class AddCustomer extends Component {
         {/* type tel 로 거를수있는지 form태그랑 form-control 클래스(부트스트랩) 적용할 것!!  */}
         <Input
           type={'tel'}
-          onChange={handleOnChange}
+          onChange={e => {
+            if (e.nativeEvent.data >= '0' && e.nativeEvent.data <= '9') {
+              if (e.target.value.length < 14) {
+                handleOnChange(e);
+              }
+            }
+          }}
           onKeyDown={handleOnKeyDown}
           placeholder={'신규 고객의 핸드폰 번호를 입력'}
           value={phoneNumber}

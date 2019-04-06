@@ -9,12 +9,14 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: List([])
+      data: List([]),
+      deleteBtn: false
     };
     this.debouncedHandleOnChange = this.debounce(
       this.handleOnChange.bind(this),
       0
     );
+    this.four = '';
   }
 
   debounce = (func, wait) => {
@@ -27,6 +29,7 @@ export default class Search extends Component {
 
   handleOnChange = val => {
     if (val.length === 4) {
+      this.setState({ deleteBtn: true });
       utils
         .fetchPostData('/stores/customers/find-last-number', {
           phoneNumber: val
@@ -42,45 +45,55 @@ export default class Search extends Component {
         });
     } else if (val.length === 0) {
       this.setState({
-        data: List([])
+        data: List([]),
+        deleteBtn: false
       });
-    } else if (val.length > 4) {
     }
   };
 
   render() {
     const { debouncedHandleOnChange } = this;
-    const { data } = this.state;
+    const { data, deleteBtn } = this.state;
     const { clickAddCustomer, clickCustomer } = this.props;
     return (
       <div className="col-4 p-4">
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
-              <img
-                src="https://img.icons8.com/metro/26/000000/phone.png"
-                width="16"
-                alt="phone number"
-              />
+              {deleteBtn ? (
+                <img
+                  src="/delete.png"
+                  width="16"
+                  onClick={e => {
+                    e.nativeEvent.path[3].children[1].value = '';
+                  }}
+                  className="img-deleteButton"
+                />
+              ) : (
+                <img src="/phone.png" width="16" alt="phone number" />
+              )}
             </span>
           </div>
-          {/* TODO : 입력 4자리로 제한!!!!!! !!!!!!!!!*/}
           <Input
             onChange={e => {
-              let four = '';
-              if (e.target.value.length === 4) {
-                four = e.target.value;
-                console.log(e.target.value, four);
-                debouncedHandleOnChange(e.target.value);
-              } else if (e.target.value.length > 4) {
-                e.target.value = four;
+              if (e.nativeEvent.data >= '0' && e.nativeEvent.data <= '9') {
+                if (e.target.value.length <= 4) {
+                  this.four = e.target.value;
+                }
+                if (e.target.value.length === 4) {
+                  debouncedHandleOnChange(e.target.value);
+                } else if (e.target.value.length > 4) {
+                  e.target.value = this.four;
+                }
+              } else {
+                e.target.value = this.four;
               }
             }}
             placeholder={'휴대폰 번호 뒷자리 검색'}
             className={'form-control'}
-            type={'number'}
-            min={'0'}
-            max={'9999'}
+            type={'text'} // number로 받으면 스트링이 아니라서 length기반 판단이 안됨 ㅠㅠ
+            // min={'0'}
+            // max={'9999'}
           />
         </div>
         <SearchResult

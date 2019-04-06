@@ -35,7 +35,7 @@ class SignIn extends Component {
         <div className="row p-4">
           <div className="col-12">
             <h1>꾹꾹이</h1>
-            <img src="muzi.png" width="60" id="img-muzi" />
+            <img src="muzi.png" width="60" id="img-muzi" alt="welcome" />
           </div>
           <div className="col-12">
             <h4 ref={this.signInResult} className="signin">
@@ -55,6 +55,7 @@ class SignIn extends Component {
                   type={'text'}
                   ref={this.email}
                   className={'form-control'}
+                  required
                 />
               </div>
               <div className="col-12">
@@ -63,6 +64,7 @@ class SignIn extends Component {
                   type={'password'}
                   ref={this.password}
                   className={'form-control'}
+                  required
                 />
               </div>
               <div className="col-12 mt-2">
