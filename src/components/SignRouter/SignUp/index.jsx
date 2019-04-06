@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Input from '../../common/Input';
 import Button from '../../common/Button';
 import fetchPostData from '../../../utils/fetchPostData';
 import './index.css';
@@ -112,6 +111,7 @@ class SignUp extends Component {
                   type={'email'}
                   ref={email}
                   className={'form-control'}
+                  required
                 />
               </div>
               <div className="col-12">
@@ -120,6 +120,7 @@ class SignUp extends Component {
                   type={'password'}
                   ref={password}
                   className={'form-control'}
+                  required
                 />
               </div>
               <div className="col-12">
@@ -128,6 +129,7 @@ class SignUp extends Component {
                   type={'password'}
                   ref={passwordCheck}
                   className={'form-control'}
+                  required
                 />
               </div>
               <div className="col-12">
@@ -136,6 +138,7 @@ class SignUp extends Component {
                   type={'text'}
                   ref={storeName}
                   className={'form-control'}
+                  required
                 />
               </div>
               <div className="col-12">
@@ -146,6 +149,7 @@ class SignUp extends Component {
                   className={'form-control'}
                   min={'2'}
                   max={'20'}
+                  required
                 />
               </div>
               <div className="col-12 mt-2">

@@ -33,3 +33,34 @@
   font-size: 22px;
   font-weight: 700;
 }
+
+.couponsMessage {
+  background-color: rgb(246, 246, 246);
+  width: 200px;
+  padding: 6px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.couponsMessage-used {
+  background-color: rgb(92, 158, 212);
+  color: white;
+  width: 200px;
+  padding: 6px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.couponsMessage-fail {
+  background-color: rgb(219, 62, 62);
+  color: white;
+  width: 200px;
+  padding: 6px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#messagebox {
+  margin: auto;
+  margin-top: 50px;
+}

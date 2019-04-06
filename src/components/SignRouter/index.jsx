@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import fetchPostData from '../../utils/fetchPostData';
 import fetchGetData from '../../utils/fetchGetData';
 import './index.css';
 

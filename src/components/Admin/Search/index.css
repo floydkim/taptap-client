@@ -38,3 +38,10 @@
   color: rgb(223, 58, 47);
   cursor: pointer;
 }
+
+#phoneNumberDelete {
+  background-color: gray;
+  color: white;
+  position: relative;
+  left: -20px;
+}

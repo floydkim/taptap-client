@@ -8,7 +8,9 @@ export default class Coupons extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isWaiting: false
+      isWaiting: false,
+      message: '적립 or 사용',
+      messageClassName: 'couponsMessage'
     };
     this.preventFetching = false;
   }
@@ -25,12 +27,21 @@ export default class Coupons extends Component {
           storeID
         })
         .then(() => {
-          this.setState({ isWaiting: false });
+          this.setState({
+            isWaiting: false,
+            message: '쿠폰이 적립되었습니다',
+            messageClassName: 'couponsMessage-used'
+          });
           clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
           this.preventFetching = false;
         })
         .catch(error => {
           console.log(error);
+          this.setState({
+            isWaiting: false,
+            message: '쿠폰 적립에 실패했습니다',
+            messageClassName: 'couponsMessage-fail'
+          });
           this.preventFetching = false;
         });
     } else {
@@ -47,9 +58,18 @@ export default class Coupons extends Component {
         customerID
       })
       .then(() => {
+        this.setState({
+          message: '쿠폰이 사용 처리 되었습니다.',
+          messageClassName: 'couponsMessage-used'
+        });
         clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
       })
       .catch(error => {
+        this.setState({
+          isWaiting: false,
+          message: '쿠폰 사용 실패!',
+          messageClassName: 'couponsMessage-fail'
+        });
         console.log(error);
       });
   };
@@ -58,7 +78,7 @@ export default class Coupons extends Component {
 
   render() {
     const { onClickInsertCoupon, onClickUseCoupon } = this;
-    const { isWaiting } = this.state;
+    const { isWaiting, message, messageClassName } = this.state;
     const counts = this.props.counts;
     return (
       <div className="couponsDisplay p-3">
@@ -77,6 +97,9 @@ export default class Coupons extends Component {
           type={'text'}
           onClick={onClickInsertCoupon}
         />
+        <div className={messageClassName} id="messagebox">
+          {message}
+        </div>
       </div>
     );
   }

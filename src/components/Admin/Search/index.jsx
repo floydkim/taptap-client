@@ -15,6 +15,7 @@ export default class Search extends Component {
       this.handleOnChange.bind(this),
       0
     );
+    this.four = '';
   }
 
   debounce = (func, wait) => {
@@ -44,7 +45,6 @@ export default class Search extends Component {
       this.setState({
         data: List([])
       });
-    } else if (val.length > 4) {
     }
   };
 
@@ -57,30 +57,29 @@ export default class Search extends Component {
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <span className="input-group-text" id="basic-addon1">
-              <img
-                src="https://img.icons8.com/metro/26/000000/phone.png"
-                width="16"
-                alt="phone number"
-              />
+              <img src="/phone.png" width="16" alt="phone number" />
             </span>
           </div>
-          {/* TODO : 입력 4자리로 제한!!!!!! !!!!!!!!!*/}
           <Input
             onChange={e => {
-              let four = '';
-              if (e.target.value.length === 4) {
-                four = e.target.value;
-                console.log(e.target.value, four);
-                debouncedHandleOnChange(e.target.value);
-              } else if (e.target.value.length > 4) {
-                e.target.value = four;
+              if (e.nativeEvent.data >= '0' && e.nativeEvent.data <= '9') {
+                if (e.target.value.length <= 4) {
+                  this.four = e.target.value;
+                }
+                if (e.target.value.length === 4) {
+                  debouncedHandleOnChange(e.target.value);
+                } else if (e.target.value.length > 4) {
+                  e.target.value = this.four;
+                }
+              } else {
+                e.target.value = this.four;
               }
             }}
             placeholder={'휴대폰 번호 뒷자리 검색'}
             className={'form-control'}
-            type={'number'}
-            min={'0'}
-            max={'9999'}
+            type={'text'} // number로 받으면 스트링이 아니라서 length기반 판단이 안됨 ㅠㅠ
+            // min={'0'}
+            // max={'9999'}
           />
         </div>
         <SearchResult
