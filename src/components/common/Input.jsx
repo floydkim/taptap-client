@@ -9,7 +9,9 @@ const Input = ({
   className,
   value,
   ref,
-  onKeyDown
+  onKeyDown,
+  min,
+  max
 }) => (
   <input
     placeholder={placeholder}
@@ -20,6 +22,8 @@ const Input = ({
     className={`commonInput ${className}`}
     value={value}
     ref={ref}
+    min={min}
+    max={max}
   />
 );
 

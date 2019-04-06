@@ -33,9 +33,11 @@ export default class AddCustomer extends Component {
               this.setState({ progress: '등록 성공!' });
               // 성공시 이 회원의 쿠폰조회 화면으로 전환
               this.props.clickCustomer(response[0].id, this.state.phoneNumber);
+              this.preventFetching = false;
             } else {
               // console.log('이미 등록된 회원입니다.');
               this.setState({ progress: '이미 등록된 회원입니다' });
+              this.preventFetching = false;
             }
           })
           .catch(error => {
@@ -113,7 +115,10 @@ export default class AddCustomer extends Component {
     const { phoneNumber, progress } = this.state;
     return (
       <div className="addCustomer p-3">
+        등록하실 손님의 핸드폰 번호를 모두 입력해주세요!
+        {/* type tel 로 거를수있는지 form태그랑 form-control 클래스(부트스트랩) 적용할 것!!  */}
         <Input
+          type={'tel'}
           onChange={handleOnChange}
           onKeyDown={handleOnKeyDown}
           placeholder={'신규 고객의 핸드폰 번호를 입력'}

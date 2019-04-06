@@ -1,7 +1,15 @@
 .container {
-  border: 1px solid #999;
+  border: 0px solid #999;
   border-radius: 8px;
-  box-shadow: 3px 3px 5px #00000066;
+  box-shadow: 0px 3px 10px #000000aa;
+  background-color: white;
+}
+
+.admin-background {
+  background-image: url('/background.png');
+  background-position: right bottom; /*Positioning*/
+  background-repeat: no-repeat; /*Prevent showing multiple background images*/
+  background-size: 200px;
 }
 
 #span-storeName {

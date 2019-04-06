@@ -5,9 +5,6 @@ const SearchResult = ({ data, clickAddCustomer, clickCustomer }) => (
     {data.size === 0 ? (
       <div>
         <div>검색 결과가 없습니다</div>
-        <div onClick={clickAddCustomer} id="div-addCustomer">
-          손님 등록
-        </div>
       </div>
     ) : (
       data.map((item, idx) => {
@@ -24,6 +21,9 @@ const SearchResult = ({ data, clickAddCustomer, clickCustomer }) => (
         );
       })
     )}
+    <div onClick={clickAddCustomer} id="div-addCustomer">
+      손님 등록
+    </div>
   </div>
 );
 
