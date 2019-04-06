@@ -21,7 +21,8 @@ class SignIn extends Component {
     });
 
     if (result.isSuccess) {
-      this.props.history.push('/admin', { id: result.id });
+      localStorage.setItem('userID', JSON.stringify(result.id));
+      this.props.history.push('/admin');
     } else {
       this.signInResult.current.innerHTML = '로그인 실패!';
       this.signInResult.current.className = 'signin-failed';
