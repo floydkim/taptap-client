@@ -64,7 +64,7 @@ class SignUp extends Component {
       this.storeName.current.value.length > 20 ||
       (this.storeName.current.value !== '' &&
         this.storeName.current.value.match(
-          /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|\*]+$/
+          /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9| |\*]+$/
         ) === null)
     ) {
       this.failMessage = '특수문자는 안돼요!';
