@@ -12,8 +12,42 @@ export default class AddCustomer extends Component {
       progress: '등록하기'
     };
     this.preventFetching = false;
-    this.inputPhoneNumber = '';
+    this.previousPhoneNumber = '';
+    this.phoneNumber = React.createRef();
   }
+
+  getPhoneNumber = () => {
+    let number;
+    if (
+      this.previousPhoneNumber[this.previousPhoneNumber.length - 1] === '-' &&
+      this.previousPhoneNumber.length - 1 ===
+        this.phoneNumber.current.value.length
+    ) {
+      number = this.phoneNumber.current.value.slice(
+        0,
+        this.phoneNumber.current.value.length - 1
+      );
+    } else {
+      number = this.phoneNumber.current.value;
+    }
+
+    this.previousPhoneNumber = number;
+
+    return number
+      .split('')
+      .filter(character => {
+        return Number.isInteger(Number(character));
+      })
+      .slice(0, 11)
+      .reduce((numbers, number, index) => {
+        numbers.push(number);
+        if (index === 2 || index === 6) {
+          numbers.push('-');
+        }
+        return numbers;
+      }, [])
+      .join('');
+  };
 
   handleOnClick = e => {
     let phoneNumber = e.nativeEvent.path[1].children[0].value;
@@ -93,6 +127,11 @@ export default class AddCustomer extends Component {
   };
 
   handleOnChange = e => {
+    this.setState({
+      phoneNumber: this.getPhoneNumber()
+    });
+
+    /*
     const inputText = e.nativeEvent.target.value;
     const { phoneNumber } = this.state;
     console.log('----------------------');
@@ -111,6 +150,7 @@ export default class AddCustomer extends Component {
         phoneNumber: inputText
       });
     }
+    */
   };
 
   render() {
@@ -120,19 +160,22 @@ export default class AddCustomer extends Component {
       <div className="addCustomer p-3">
         등록하실 손님의 핸드폰 번호를 모두 입력해주세요!
         {/* type tel 로 거를수있는지 form태그랑 form-control 클래스(부트스트랩) 적용할 것!!  */}
-        <Input
+        <input
           type={'tel'}
+          /*
           onChange={e => {
             if (e.nativeEvent.data >= '0' && e.nativeEvent.data <= '9') {
               if (e.target.value.length < 14) {
                 handleOnChange(e);
               }
             }
-          }}
-          onKeyDown={handleOnKeyDown}
+          }}*/
+          onChange={e => handleOnChange(e)}
+          /*onKeyDown={handleOnKeyDown}*/
           placeholder={'신규 고객의 핸드폰 번호를 입력'}
           value={phoneNumber}
           className={'form-control'}
+          ref={this.phoneNumber}
         />
         <Button value={progress} onClick={handleOnClick} type={'text'} />
       </div>
