@@ -14,6 +14,17 @@ export default class Coupons extends Component {
       messageClassName: 'couponsMessage'
     };
     this.preventFetching = false;
+    // 토스트 얼럿 기본세팅
+    iziToast.settings({
+      timeout: 5000,
+      resetOnHover: false,
+      icon: 'material-icons',
+      transitionIn: 'flipInX',
+      transitionOut: 'flipOutX',
+      messageSize: 15,
+      titleSize: 20,
+      position: 'topRight'
+    });
   }
 
   onClickInsertCoupon = () => {
@@ -29,6 +40,7 @@ export default class Coupons extends Component {
         })
         .then(() => {
           this.setState({
+            isWaiting: false,
             message: '쿠폰이 적립되었습니다!',
             messageClassName: 'couponsMessage-used'
           });
@@ -38,13 +50,10 @@ export default class Coupons extends Component {
           });
           setTimeout(() => {
             this.setState({
-              message: '랄랄라',
+              message: '좋은 하루 되세요!',
               messageClassName: 'couponsMessage'
             });
           }, 3000);
-          this.setState({
-            isWaiting: false
-          });
           clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
           this.preventFetching = false;
         })
@@ -55,7 +64,6 @@ export default class Coupons extends Component {
             message: '쿠폰 적립에 실패했습니다',
             messageClassName: 'couponsMessage-fail'
           });
-          this.preventFetching = false;
         });
     } else {
       console.log('아직 서버에서 응답이 오지 않았음');
@@ -74,17 +82,23 @@ export default class Coupons extends Component {
           customerID
         })
         .then(() => {
-          iziToast.success({
-            title: 'OK',
-            message: '쿠폰이 사용 처리 되었습니다!'
-          });
           this.setState({
             isWaiting: false,
             message: '쿠폰이 사용 처리 되었습니다.',
             messageClassName: 'couponsMessage-used'
           });
-
+          iziToast.success({
+            title: '와!',
+            message: '쿠폰이 사용 처리 되었습니다!'
+          });
+          setTimeout(() => {
+            this.setState({
+              message: '좋은 하루 되세요!',
+              messageClassName: 'couponsMessage'
+            });
+          }, 3000);
           clickCustomer(customerID, phoneNumber); // Admin 컴포넌트의 함수 호출
+          this.preventFetching = false;
         })
         .catch(error => {
           this.setState({
@@ -111,7 +125,7 @@ export default class Coupons extends Component {
     });
     setTimeout(() => {
       this.setState({
-        message: '랄랄라',
+        message: '좋은 하루 되세요!',
         messageClassName: 'couponsMessage'
       });
     }, 3000);

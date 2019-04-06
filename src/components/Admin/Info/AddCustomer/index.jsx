@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import Input from '../../../common/Input';
 import Button from '../../../common/Button';
 import './index.css';
 import utils from '../../../../utils';
+import iziToast from 'izitoast';
 
 export default class AddCustomer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       phoneNumber: '',
-      progress: '등록하기'
+      progress: '등록하기',
+      message: '등록하실 손님의 핸드폰 번호를 모두 입력해주세요!'
     };
     this.preventFetching = false;
     this.previousPhoneNumber = '';
     this.phoneNumber = React.createRef();
+    // 토스트 얼럿 기본세팅
+    iziToast.settings({
+      timeout: 5000,
+      resetOnHover: false,
+      icon: 'material-icons',
+      transitionIn: 'flipInX',
+      transitionOut: 'flipOutX',
+      messageSize: 15,
+      titleSize: 20,
+      position: 'topRight'
+    });
   }
 
   getPhoneNumber = () => {
@@ -71,18 +83,29 @@ export default class AddCustomer extends Component {
               this.preventFetching = false;
             } else {
               // console.log('이미 등록된 회원입니다.');
+              iziToast.error({
+                title: '앗!',
+                message: '이미 등록된 회원입니다!'
+              });
               this.setState({ progress: '이미 등록된 회원입니다' });
               this.preventFetching = false;
             }
           })
           .catch(error => {
+            this.setState({ progress: '서버 문제! 다시 시도해주세요!' });
             console.log(error);
           });
       } else {
         console.log('아직 서버에서 응답이 오지 않았음');
       }
     } else {
-      console.log('형식에 맞게 입력해주세요 010-0000-0000');
+      iziToast.error({
+        title: '앗!',
+        message: '번호를 형식에 맞게 입력해주세요! 000-0000-0000'
+      });
+      this.setState({
+        message: '번호를 형식에 맞게 입력해주세요! 000-0000-0000'
+      });
     }
   };
 
@@ -111,17 +134,28 @@ export default class AddCustomer extends Component {
                 );
               } else {
                 // console.log('이미 등록된 회원입니다.');
+                iziToast.error({
+                  title: '앗!',
+                  message: '이미 등록된 회원입니다!'
+                });
                 this.setState({ progress: '이미 등록된 회원입니다' });
               }
             })
             .catch(error => {
+              this.setState({ progress: '서버 문제! 다시 시도해주세요!' });
               console.log(error);
             });
         } else {
           console.log('아직 서버에서 응답이 오지 않았음');
         }
       } else {
-        console.log('핸드폰 번호를 모두 입력해주세요 000-0000-0000');
+        iziToast.error({
+          title: '앗!',
+          message: '번호를 형식에 맞게 입력해주세요! 000-0000-0000'
+        });
+        this.setState({
+          message: '번호를 형식에 맞게 입력해주세요! 000-0000-0000'
+        });
       }
     }
   };
@@ -134,9 +168,6 @@ export default class AddCustomer extends Component {
     /*
     const inputText = e.nativeEvent.target.value;
     const { phoneNumber } = this.state;
-    console.log('----------------------');
-    console.log('state : ', phoneNumber);
-    console.log('input : ', inputText);
     if (phoneNumber.length <= inputText.length) {
       if (inputText.length === 3 || inputText.length === 8) {
         this.setState({ phoneNumber: inputText + '-' });
@@ -155,11 +186,10 @@ export default class AddCustomer extends Component {
 
   render() {
     const { handleOnClick, handleOnChange, handleOnKeyDown } = this;
-    const { phoneNumber, progress } = this.state;
+    const { phoneNumber, progress, message } = this.state;
     return (
       <div className="addCustomer p-3">
-        등록하실 손님의 핸드폰 번호를 모두 입력해주세요!
-        {/* type tel 로 거를수있는지 form태그랑 form-control 클래스(부트스트랩) 적용할 것!!  */}
+        {message}
         <input
           type={'tel'}
           /*
@@ -171,7 +201,7 @@ export default class AddCustomer extends Component {
             }
           }}*/
           onChange={e => handleOnChange(e)}
-          /*onKeyDown={handleOnKeyDown}*/
+          onKeyDown={handleOnKeyDown}
           placeholder={'신규 고객의 핸드폰 번호를 입력'}
           value={phoneNumber}
           className={'form-control'}
