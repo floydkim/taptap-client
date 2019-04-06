@@ -7,7 +7,7 @@
 }
 
 .couponsDisplay img {
-  width: 50px;
+  width: 45px;
 }
 
 .couponsDisplay-phoneNumber {
@@ -20,6 +20,7 @@
   border-radius: 6px;
   background-color: #efefefbb;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 #couponsCountDisplay {
