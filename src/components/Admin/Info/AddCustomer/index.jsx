@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Input from '../../../common/Input';
 import Button from '../../../common/Button';
 import './index.css';
 import utils from '../../../../utils';
@@ -16,6 +15,17 @@ export default class AddCustomer extends Component {
     this.preventFetching = false;
     this.previousPhoneNumber = '';
     this.phoneNumber = React.createRef();
+    // 토스트 얼럿 기본세팅
+    iziToast.settings({
+      timeout: 5000,
+      resetOnHover: false,
+      icon: 'material-icons',
+      transitionIn: 'flipInX',
+      transitionOut: 'flipOutX',
+      messageSize: 15,
+      titleSize: 20,
+      position: 'topRight'
+    });
   }
 
   getPhoneNumber = () => {
@@ -82,6 +92,7 @@ export default class AddCustomer extends Component {
             }
           })
           .catch(error => {
+            this.setState({ progress: '서버 문제! 다시 시도해주세요!' });
             console.log(error);
           });
       } else {
@@ -108,10 +119,6 @@ export default class AddCustomer extends Component {
         });
         if (!this.preventFetching) {
           this.preventFetching = true;
-          iziToast.error({
-            title: 'fetch',
-            message: phoneNumber
-          });
           utils
             .fetchPostData('/stores/customers/insert-customer', {
               phoneNumber
@@ -127,10 +134,15 @@ export default class AddCustomer extends Component {
                 );
               } else {
                 // console.log('이미 등록된 회원입니다.');
+                iziToast.error({
+                  title: '앗!',
+                  message: '이미 등록된 회원입니다!'
+                });
                 this.setState({ progress: '이미 등록된 회원입니다' });
               }
             })
             .catch(error => {
+              this.setState({ progress: '서버 문제! 다시 시도해주세요!' });
               console.log(error);
             });
         } else {
@@ -189,7 +201,7 @@ export default class AddCustomer extends Component {
             }
           }}*/
           onChange={e => handleOnChange(e)}
-          /*onKeyDown={handleOnKeyDown}*/
+          onKeyDown={handleOnKeyDown}
           placeholder={'신규 고객의 핸드폰 번호를 입력'}
           value={phoneNumber}
           className={'form-control'}
