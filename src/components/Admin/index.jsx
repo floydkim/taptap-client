@@ -9,7 +9,7 @@ export default class Admin extends Component {
     super(props);
     utils
       .fetchPostData('/stores/rewards/get-required', {
-        storeID: this.props.location.state.id
+        storeID: JSON.parse(localStorage.getItem('userID'))
       })
       .then(response => {
         this.setState({
@@ -25,7 +25,7 @@ export default class Admin extends Component {
       isClickedAddCustomer: false,
       isClickedCustomer: false,
       // 로그인 성공시 받아오는 정보
-      STORE_ID: this.props.location.state.id, // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
+      STORE_ID: JSON.parse(localStorage.getItem('userID')), // 매장 ID. 적립된 쿠폰 수 조회 및 손님등록시 필요
       // 컴포넌트 띄울때 가져올 정보
       REQUIRED: 0,
       STORE_NAME: '',
