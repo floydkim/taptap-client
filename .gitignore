@@ -24,6 +24,7 @@ yarn-error.log*
 
 .code
 .idea
+.vscode
 
 yarn.lock
 package-lock.json
