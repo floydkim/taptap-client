@@ -7,7 +7,7 @@ import SignUp from './components/SignRouter/SignUp';
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/taptap-client">
         <Route exact path="/" component={SignRouter} />
         <Route path="/signIn" component={SignIn} />
         <Route path="/signUp" component={SignUp} />

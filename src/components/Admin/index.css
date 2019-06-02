@@ -6,7 +6,7 @@
 }
 
 .admin-background {
-  background-image: url('/background.png');
+  background-image: url('background.png');
   background-position: right bottom; /*Positioning*/
   background-repeat: no-repeat; /*Prevent showing multiple background images*/
   background-size: 200px;

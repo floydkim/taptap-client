@@ -62,7 +62,7 @@ export default class Search extends Component {
             <span className="input-group-text" id="basic-addon1">
               {deleteBtn ? (
                 <img
-                  src="/delete.png"
+                  src="./delete.png"
                   width="16"
                   onClick={e => {
                     e.nativeEvent.path[3].children[1].value = '';
@@ -70,7 +70,7 @@ export default class Search extends Component {
                   className="img-deleteButton"
                 />
               ) : (
-                <img src="/phone.png" width="16" alt="phone number" />
+                <img src="./phone.png" width="16" alt="phone number" />
               )}
             </span>
           </div>
